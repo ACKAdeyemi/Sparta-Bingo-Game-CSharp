@@ -15,7 +15,7 @@ namespace BingoConsoleApp
             Player player = new Player
             {
                 name = "Chris",
-                playerNumbers = {}
+                playerNumbers = { }
             };
 
             List<int> pickedNumbers = new List<int>();
@@ -32,18 +32,31 @@ namespace BingoConsoleApp
             Console.WriteLine("\nLET'S PLAY BINGO!");
             Console.WriteLine();
 
-            RollNumbers(pickedNumbers);
-            for (int i = 0; i < pickedNumbers.Count; i++)
-            {
-                Console.WriteLine("The next rolled number is " + pickedNumbers[i]);
-            }
+            int rolledNumbersCounter = 1;
+            RollNumbers(pickedNumbers, rolledNumbersCounter);
 
-            CheckPlayerWin(pickedNumbers, player.playerNumbers, player.name);
+            for (int i = 10; rolledNumbersCounter < i; rolledNumbersCounter++)
+            {
+                Console.WriteLine("Players numbers are:");
+                foreach (int number in player.playerNumbers)
+                {
+                    Console.Write(number + ", ");
+                }
+                Console.WriteLine("Press enter to roll a number...");
+                if (Console.ReadKey().Key == ConsoleKey.Enter)
+                {
+                    for (int j = 0; j < pickedNumbers.Count; j++)
+                    {
+                        Console.WriteLine("The next rolled number is " + pickedNumbers[j]);
+                    }
+                }
+                CheckPlayerWin(pickedNumbers, player.playerNumbers, player.name);
+            }
 
             Console.ReadLine();
         }
 
-        public static void CheckPlayerWin (List<int> list, int[] playerArray, string nameOfPlayer)
+        public static void CheckPlayerWin(List<int> list, int[] playerArray, string nameOfPlayer)
         {
             List<int> checkWinList = new List<int>();
             // BELOW adds player's numbers to a list for comparison
@@ -81,13 +94,13 @@ namespace BingoConsoleApp
         }
 
         // BELOW inserts random numbers into a list
-        public static void RollNumbers (List<int> list)
+        public static void RollNumbers(List<int> list, int counter)
         {
             Random randomNumber = new Random();
             int number;
 
             // loop iterations needs to be one lower than max random num to work
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < counter; i++)
             {
                 do
                 {
