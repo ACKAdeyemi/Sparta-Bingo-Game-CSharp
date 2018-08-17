@@ -10,9 +10,7 @@ namespace BingoConsoleApp
             Console.WriteLine("Hello World! From Virtual Machine");
             Console.WriteLine("Successfully linked to personal machine!");
             // CODE GOES BELOW HERE
-            Console.WriteLine();
-            Console.WriteLine("NEW GAME - BINGO");
-            Console.WriteLine();
+            Console.WriteLine("\nNEW GAME - BINGO");
 
             Player player = new Player
             {
@@ -23,7 +21,7 @@ namespace BingoConsoleApp
             List<int> pickedNumbers = new List<int>();
 
             // BELOW confirms player name can be shown, can change to player input later
-            Console.WriteLine(player.name);
+            Console.WriteLine("\n" + player.name);
             // BELOW confirms array items can be listed
             Console.WriteLine("Players numbers are:");
             foreach (int number in player.playerNumbers)
@@ -31,8 +29,7 @@ namespace BingoConsoleApp
                 Console.WriteLine(number);
             }
 
-            Console.WriteLine();
-            Console.WriteLine("LET'S PLAY BINGO!");
+            Console.WriteLine("\nLET'S PLAY BINGO!");
             Console.WriteLine();
 
             RollNumbers(pickedNumbers);
@@ -58,6 +55,7 @@ namespace BingoConsoleApp
                 }
             }
 
+            // BELOW orders both lists in ascending order
             list.Sort();
             checkWinList.Sort();
 
@@ -68,13 +66,17 @@ namespace BingoConsoleApp
                 {
                     if (list[i] == checkWinList[j])
                     {
-                        Console.WriteLine();
-                        Console.WriteLine(nameOfPlayer + " HAS A MATCH!");
+                        Console.WriteLine("\n" + nameOfPlayer + " HAS A MATCH!");
                         Console.WriteLine("Player's number = " + checkWinList[j]);
                         Console.WriteLine("Rolled number = " + list[i]);
-
                     }
                 }
+            }
+            if (playerArray.Length == checkWinList.Count)
+            {
+                Console.WriteLine("\nBINGO!");
+                Console.WriteLine(nameOfPlayer + " wins the GAME!");
+                Console.WriteLine("GAME END");
             }
         }
 
@@ -84,6 +86,7 @@ namespace BingoConsoleApp
             Random randomNumber = new Random();
             int number;
 
+            // loop iterations needs to be one lower than max random num to work
             for (int i = 0; i < 10; i++)
             {
                 do
@@ -107,6 +110,8 @@ namespace BingoConsoleApp
 
 // So we have players, each player has a name and a bingo card
 // Start with one player. 
+// Need to add press enter for new ball funtionality
+// ABOVE - needs to include info on players numbers and current rolled number list ("All rolled numbers so far:")
 
 // ADD THIS FUNCTIONALITY - PRESS ENTER FOR NEW BALL (BELOW NOT WORKING YET...)
 //public static void RollNumbers(List<int> list)
