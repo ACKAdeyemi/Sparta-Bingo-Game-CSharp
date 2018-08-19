@@ -5,7 +5,7 @@ namespace BingoConsoleApp
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("Hello World! From Virtual Machine");
             Console.WriteLine("Successfully linked to personal machine!");
@@ -39,6 +39,44 @@ namespace BingoConsoleApp
 
             // BELOW is to prevent application ended after player wins/final number roll
             Console.ReadLine();
+        }
+
+        public static void gameState()
+        {
+            bool keepPlaying = true;
+
+            while (keepPlaying)
+            {
+                Console.WriteLine("Would you like to play again? \nEnter 1 for YES and 2 for NO");
+                string entry = Console.ReadLine();
+
+                try
+                {
+                    // BELOW converts user input to integer
+                    int num = int.Parse(entry);
+
+                    if (num == 1)
+                    {
+                        Main();
+                    }
+                    else if (num == 2)
+                    {
+                        keepPlaying = false;
+                        Console.WriteLine("Thank you for playing! Goodbye.");
+                        return;
+                    }
+                    else
+                    {
+                        Console.WriteLine("That is not valid input.");
+                        continue;
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("That is not valid input.");
+                    continue;
+                }
+            }
         }
 
         public static void CheckPlayerWin(List<int> list, Player playerClass)
@@ -75,6 +113,7 @@ namespace BingoConsoleApp
                 Console.WriteLine("\nBINGO!");
                 Console.WriteLine(playerClass.name + " wins the GAME!");
                 Console.WriteLine("GAME END");
+                gameState();
             }
         }
 
