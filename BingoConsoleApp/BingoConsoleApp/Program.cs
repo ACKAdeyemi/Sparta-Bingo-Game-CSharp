@@ -26,30 +26,17 @@ namespace BingoConsoleApp
             Console.WriteLine("Players numbers are:");
             foreach (int number in player.playerNumbers)
             {
-                Console.WriteLine(number);
+                Console.Write(number + ", ");
             }
 
-            Console.WriteLine("\nLET'S PLAY BINGO!");
-            Console.WriteLine();
+            Console.WriteLine("\n\nLET'S PLAY BINGO!");
 
             int rolledNumbersCounter = 1;
-            RollNumbers(pickedNumbers, rolledNumbersCounter);
 
             for (int i = 10; rolledNumbersCounter < i; rolledNumbersCounter++)
             {
-                Console.WriteLine("Players numbers are:");
-                foreach (int number in player.playerNumbers)
-                {
-                    Console.Write(number + ", ");
-                }
-                Console.WriteLine("Press enter to roll a number...");
-                if (Console.ReadKey().Key == ConsoleKey.Enter)
-                {
-                    for (int j = 0; j < pickedNumbers.Count; j++)
-                    {
-                        Console.WriteLine("The next rolled number is " + pickedNumbers[j]);
-                    }
-                }
+                RollNumbers(pickedNumbers, player, rolledNumbersCounter);
+
                 CheckPlayerWin(pickedNumbers, player.playerNumbers, player.name);
             }
 
@@ -79,7 +66,7 @@ namespace BingoConsoleApp
                 {
                     if (list[i] == checkWinList[j])
                     {
-                        Console.WriteLine("\n" + nameOfPlayer + " HAS A MATCH!");
+                        Console.WriteLine("\n\n" + nameOfPlayer + " HAS A MATCH!");
                         Console.WriteLine("Player's number = " + checkWinList[j]);
                         Console.WriteLine("Rolled number = " + list[i]);
                     }
@@ -94,7 +81,7 @@ namespace BingoConsoleApp
         }
 
         // BELOW inserts random numbers into a list
-        public static void RollNumbers(List<int> list, int counter)
+        public static void RollNumbers(List<int> list, Player playerClass, int counter)
         {
             Random randomNumber = new Random();
             int number;
@@ -107,6 +94,23 @@ namespace BingoConsoleApp
                     number = randomNumber.Next(1, 11);
                 } while (list.Contains(number));
                 list.Add(number);
+                Console.WriteLine("\nPress SPACEBAR to roll a number...");
+                if (Console.ReadKey().Key == ConsoleKey.Spacebar)
+                {
+                    Console.WriteLine("\nThe next rolled number is " + number);
+
+                    Console.WriteLine("\n" + playerClass.name + "'s numbers are:");
+                    foreach (int playerNumber in playerClass.playerNumbers)
+                    {
+                        Console.Write(playerNumber + ", ");
+                    }
+
+                    Console.WriteLine("\nThese are the rolled numbers so far:");
+                    foreach (int num in list)
+                    {
+                        Console.Write(num + ", ");
+                    }
+                }
             }
         }
     }
