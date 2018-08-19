@@ -14,16 +14,18 @@ namespace BingoConsoleApp
 
             Player player = new Player
             {
-                name = "Chris",
+                name = "Player",
                 playerNumbers = { }
             };
 
-            List<int> pickedNumbers = new List<int>();
+            // BELOW allows player to set their own name 
+            Console.WriteLine("\nHi Player 1. \nWelcome to BINGO by ACKA. \nWhat is your name?");
+            player.name = Console.ReadLine();
+            Console.WriteLine("\nHi " + player.name + ", thanks for joining! Have a great game!");
 
-            // BELOW confirms player name can be shown, can change to player input later
-            Console.WriteLine("\n" + player.name);
+            Console.WriteLine("\nGenerating " + player.name + "'s numbers...");
             // BELOW confirms array items can be listed
-            Console.WriteLine("Players numbers are:");
+            Console.WriteLine(player.name + "'s numbers are:");
             foreach (int number in player.playerNumbers)
             {
                 Console.Write(number + ", ");
@@ -31,8 +33,11 @@ namespace BingoConsoleApp
 
             Console.WriteLine("\n\nLET'S PLAY BINGO!");
 
+            List<int> pickedNumbers = new List<int>();
+
             RollNumbers(pickedNumbers, player);
 
+            // BELOW is to prevent application ended after player wins/final number roll
             Console.ReadLine();
         }
 
@@ -119,31 +124,9 @@ namespace BingoConsoleApp
     }
 }
 
+// ========= PSUEDO CODE: =========
 // So we have players, each player has a name and a bingo card
 // Start with one player. 
 // Need to add press enter for new ball funtionality
 // ABOVE - needs to include info on players numbers and current rolled number list ("All rolled numbers so far:")
-
-// ADD THIS FUNCTIONALITY - PRESS ENTER FOR NEW BALL (BELOW NOT WORKING YET...)
-//public static void RollNumbers(List<int> list)
-//{
-//    Random randomNumber = new Random();
-//    int number;
-
-//    for (int i = 0; i < 10; i++)
-//    {
-//        Console.WriteLine("Press enter to roll a number...");
-//        if (Console.ReadKey().Key == ConsoleKey.Enter)
-//        {
-//            do
-//            {
-//                number = randomNumber.Next(1, 11);
-//            } while (list.Contains(number));
-//            list.Add(number);
-//        }
-//        else
-//        {
-//            continue;
-//        }
-//    }
-//}
+// Need to incliude a way for the game to be restart (use a bool and say "while play = true, do method" - take content out of main and put into seperate method and then maybe wrap the while loop in that method... call it 'playBingo')
