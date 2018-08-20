@@ -17,10 +17,10 @@ namespace BingoConsoleApp
             Player player = new Player
             {
                 name = "Player",
-                numbers = { }
+                numbers = { },
+                bingoGrid = { }
             };
 
-            RandomPlayerNumbers(player);
 
             // BELOW allows player to set their own name 
             Console.WriteLine("\nHi Player 1. \nWelcome to BINGO by ACKA. \nWhat is your name?");
@@ -28,6 +28,8 @@ namespace BingoConsoleApp
             Console.WriteLine("\nHi " + player.name + ", thanks for joining! Have a great game!");
 
             Console.WriteLine("\nGenerating " + player.name + "'s numbers...");
+            RandomPlayerNumbers(player);
+            RandomPlayerBingoGrid(player);
             // BELOW confirms array items can be listed
             Console.WriteLine(player.name + "'s numbers are:");
             foreach (int number in player.numbers)
@@ -40,6 +42,37 @@ namespace BingoConsoleApp
             List<int> pickedNumbers = new List<int>();
 
             RollNumbers(pickedNumbers, player);
+        }
+
+        public static void RandomPlayerBingoGrid(Player playerClass)
+        {
+            Console.WriteLine(playerClass.name + "'s Bingo Grid (Multi-Dimensional Array):");
+            Random randNum = new Random();
+            for (int x = 0; x < 5; x++)
+            {
+                for (int y = 0; y < 5; y++)
+                {
+                    int number;
+                    number = randNum.Next(1, 30);
+
+                    playerClass.bingoGrid[x, y] = number;
+                    Console.Write(playerClass.bingoGrid[x, y] + " ");
+
+                    //if (!playerClass.bingoGrid[x, y].Equals(number))
+                    //{
+                    //    playerClass.bingoGrid[x, y] = number;
+                    //    Console.Write(playerClass.bingoGrid[x, y] + " ");
+                    //}
+                    //else
+                    //{
+                    // prevents adding zeros to player's numbers by going back to the index
+                    //x--;
+                    //    y--;
+                    //}
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
         }
 
         public static void RandomPlayerNumbers(Player playerClass)
