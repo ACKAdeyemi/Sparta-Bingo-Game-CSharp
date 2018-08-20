@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BingoPlayerClass;
+using System.Linq;
 
 namespace BingoConsoleApp
 {
@@ -18,6 +19,8 @@ namespace BingoConsoleApp
                 name = "Player",
                 playerNumbers = { }
             };
+
+            RandomPlayerNumbers(player);
 
             // BELOW allows player to set their own name 
             Console.WriteLine("\nHi Player 1. \nWelcome to BINGO by ACKA. \nWhat is your name?");
@@ -42,7 +45,25 @@ namespace BingoConsoleApp
             Console.ReadLine();
         }
 
-        public static void gameState()
+        public static void RandomPlayerNumbers(Player playerClass)
+        {
+            Random randNum = new Random();
+            for (int i = 0; i < playerClass.playerNumbers.Length; i++)
+            {
+                int number;
+                number = randNum.Next(1, 10);
+                if (!playerClass.playerNumbers.Contains(number))
+                {
+                    playerClass.playerNumbers[i] = number;
+                }
+                else
+                {
+                    i--;
+                }
+            }
+        }
+
+        public static void GameState()
         {
             bool keepPlaying = true;
 
@@ -115,7 +136,7 @@ namespace BingoConsoleApp
                 Console.WriteLine("\nBINGO!");
                 Console.WriteLine(playerClass.name + " wins the GAME!");
                 Console.WriteLine("GAME END");
-                gameState();
+                GameState();
             }
         }
 
