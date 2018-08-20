@@ -58,6 +58,7 @@ namespace BingoConsoleApp
                 }
                 else
                 {
+                    // prevents adding zeros to player's numbers by going back to the index
                     i--;
                 }
             }
