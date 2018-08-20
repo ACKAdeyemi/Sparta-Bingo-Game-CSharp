@@ -40,9 +40,6 @@ namespace BingoConsoleApp
             List<int> pickedNumbers = new List<int>();
 
             RollNumbers(pickedNumbers, player);
-
-            // BELOW is to prevent application ended after player wins/final number roll
-            Console.ReadLine();
         }
 
         public static void RandomPlayerNumbers(Player playerClass)
