@@ -17,7 +17,7 @@ namespace BingoConsoleApp
             Player player = new Player
             {
                 name = "Player",
-                playerNumbers = { }
+                numbers = { }
             };
 
             RandomPlayerNumbers(player);
@@ -30,7 +30,7 @@ namespace BingoConsoleApp
             Console.WriteLine("\nGenerating " + player.name + "'s numbers...");
             // BELOW confirms array items can be listed
             Console.WriteLine(player.name + "'s numbers are:");
-            foreach (int number in player.playerNumbers)
+            foreach (int number in player.numbers)
             {
                 Console.Write(number + ", ");
             }
@@ -45,13 +45,13 @@ namespace BingoConsoleApp
         public static void RandomPlayerNumbers(Player playerClass)
         {
             Random randNum = new Random();
-            for (int i = 0; i < playerClass.playerNumbers.Length; i++)
+            for (int i = 0; i < playerClass.numbers.Length; i++)
             {
                 int number;
                 number = randNum.Next(1, 10);
-                if (!playerClass.playerNumbers.Contains(number))
+                if (!playerClass.numbers.Contains(number))
                 {
-                    playerClass.playerNumbers[i] = number;
+                    playerClass.numbers[i] = number;
                 }
                 else
                 {
@@ -104,11 +104,11 @@ namespace BingoConsoleApp
         {
             List<int> checkWinList = new List<int>();
             // BELOW adds player's numbers to a list for comparison
-            for (int i = 0; i < playerClass.playerNumbers.Length; i++)
+            for (int i = 0; i < playerClass.numbers.Length; i++)
             {
-                if (list.Contains(playerClass.playerNumbers[i]))
+                if (list.Contains(playerClass.numbers[i]))
                 {
-                    checkWinList.Add(playerClass.playerNumbers[i]);
+                    checkWinList.Add(playerClass.numbers[i]);
                 }
             }
 
@@ -129,7 +129,7 @@ namespace BingoConsoleApp
                     }
                 }
             }
-            if (playerClass.playerNumbers.Length == checkWinList.Count)
+            if (playerClass.numbers.Length == checkWinList.Count)
             {
                 Console.WriteLine("\nBINGO!");
                 Console.WriteLine(playerClass.name + " wins the GAME!");
@@ -158,7 +158,7 @@ namespace BingoConsoleApp
                     Console.WriteLine("\nThe next rolled number is " + number);
 
                     Console.WriteLine("\n" + playerClass.name + "'s numbers are:");
-                    foreach (int playerNumber in playerClass.playerNumbers)
+                    foreach (int playerNumber in playerClass.numbers)
                     {
                         Console.Write(playerNumber + ", ");
                     }
